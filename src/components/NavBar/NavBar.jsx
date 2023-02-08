@@ -1,5 +1,6 @@
 import React from 'react'
 import './NavBar.css'
+import CartWidget from '../CartWidget/CartWidget'
 
 const NavBar = () => {
     const links = [
@@ -21,6 +22,7 @@ const NavBar = () => {
 					<ul className="navbar-nav me-auto mb-2 mb-lg-0">
 						{links.map(link => <li key={link.id} className="nav-item"><a className="nav-link" href={link.link}>{link.title}</a></li>)}
 					</ul>
+					<CartWidget/>
   				</div>
 			</div>
 		</nav>
