@@ -1,0 +1,26 @@
+.footer {
+    position:absolute;
+    bottom:0;
+    width:100%;
+    padding: 20px 0;
+    /* height:60px; */
+    background-color: #9479a4;
+    color: #e2cdee;
+}
+a {
+    color: #e2cdee;
+}
+.list-group-item {
+    border: 0;
+    background-color: transparent;
+}
+.footer-redes {
+    padding: 0;
+}
+.footer-redes li {
+    display: inline-block;
+    padding: 5px 10px;
+}
+.footer-brand {
+    max-height: 150px;
+}

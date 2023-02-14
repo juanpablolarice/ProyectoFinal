@@ -1,0 +1,9 @@
+a:link {
+    text-decoration: none;
+    color: inherit;
+}
+#root {
+    height: 100vh;
+    background: rgb(255,255,255);
+    background: linear-gradient(41deg, rgba(255,255,255,1) 0%, rgba(226,205,238,1) 60%);
+}
