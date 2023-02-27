@@ -1,5 +1,5 @@
 .footer {
-    position:absolute;
+    position:relative;
     bottom:0;
     width:100%;
     padding: 20px 0;
@@ -23,4 +23,7 @@ a {
 }
 .footer-brand {
     max-height: 150px;
+}
+.sticky-bottom {
+    z-index: 1;
 }

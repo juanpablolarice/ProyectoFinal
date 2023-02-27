@@ -1,26 +1,43 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './NavBar.css'
 import CartWidget from '../CartWidget/CartWidget'
+import { Link } from 'react-router-dom'
+import ItemListContainer from '../ItemListContainer/ItemListContainer'
 
 const NavBar = () => {
-    const links = [
-		{id: 1,title:'Inicio', link:'/'},
-		{id: 2,title:'Electrónica', link:'/#'},
-		{id: 3,title:'Hombre', link:'/#'},
-		{id: 4,title:'Mujer', link:'/#'},
-		{id: 5,title:'Joyas', link:'/#'}
-	]
+	const [categorias, setCategorias] = useState([]);
+    
+	useEffect(() => {
+		fetch('https://dummyjson.com/products/categories')
+			.then((response) => response.json())
+			.then((data) => {
+				setCategorias(data);
+			})
+		.catch((err) => {
+			console.log(err.message);
+		});
+	}, [])
 	
     return (
 		<nav className="navbar navbar-expand-lg">
 			<div className="container">
-	  			<a className="navbar-brand" href="#"><img className="rounded-circle" width="40" height="40" src="images/brand.png" alt="" /></a>
+				<a className="navbar-brand" href="#">
+					<img className="rounded-circle" width="40" height="40" src="images/brand.png" alt="" />
+				</a>
 	  			<button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span className="navbar-toggler-icon"></span>
 	  			</button>
 	  			<div className="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul className="navbar-nav me-auto mb-2 mb-lg-0">
-						{links.map(link => <li key={link.id} className="nav-item"><a className="nav-link" href={link.link}>{link.title}</a></li>)}
+						<li key={'home'} className="nav-item"><Link to={'/'} className="nav-link capitalize-first">Home</Link></li>
+						<li className="nav-item dropdown">
+          					<a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            					Products
+          					</a>
+          					<ul className="dropdown-menu">            					
+								{categorias.map(categoria => <li key={categoria}><Link to={"category/" + categoria} className="dropdown-item capitalize-first">{categoria.replaceAll('-', ' ')}</Link></li>)}
+							</ul>
+        				</li>
 					</ul>
 					<CartWidget/>
   				</div>
