@@ -3,7 +3,7 @@ a:link {
     color: inherit;
 }
 #root {
-    /* height: 100vh; */
+    min-height: calc(100vh - 220px);
     background: rgb(255,255,255);
     background: linear-gradient(41deg, rgba(255,255,255,1) 0%, rgba(226,205,238,1) 60%);
 }

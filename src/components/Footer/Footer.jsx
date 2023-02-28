@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom'
 import './Footer.css';
 
 const Footer = () => {
-    const [categorias, setCategorias] = useState([]);
+    const [categories, setCategories] = useState([]);
 
 	useEffect(() => {
 		fetch('https://dummyjson.com/products/categories')
 			.then((response) => response.json())
 			.then((data) => {
-				setCategorias(data);
+				setCategories(data);
 			})
 		.catch((err) => {
 			console.log(err.message);
@@ -17,18 +17,20 @@ const Footer = () => {
 	}, [])
 
     return (
-        <footer className='footer container-fluid sticky-bottom mt-5'>
+        <footer className='footer container-fluid'>
             <div className="container">
                 <div className="row">
-                    <div className="col-4 text-center">
-                        <h4>Productos</h4>
-                        {categorias.map(lk => <span><Link to={"category/" + lk} className="capitalize-first">{lk.replaceAll('-', ' ')}</Link> - </span>)}
+                    <div className="col-6 text-center">
+                        <h4>Products</h4>
+                        {categories.map((category, i, row) => 
+                            <span><Link to={"category/" + category} className="capitalize-first">{category.replaceAll('-', ' ')}</Link>{ i + 1 === row.length ? '' : ' - '}</span>
+                        )}
                     </div>
-                    <div className="col-4 text-center">  
-                        <img className="footer-brand" src="images/brand.png" alt="" />                  
+                    <div className="col-3 text-center">  
+                        <img className="footer-brand" src={process.env.PUBLIC_URL + "/images/brand.png"} alt="" />                  
                     </div>
-                    <div className="col-4 text-center">
-                        <h4>Redes</h4>
+                    <div className="col-3 text-center">
+                        <h4>Social</h4>
                         <ul className="footer-redes">
                             <li className="">
                                 <a href="">

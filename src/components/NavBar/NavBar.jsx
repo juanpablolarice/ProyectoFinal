@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import './NavBar.css'
-import CartWidget from '../CartWidget/CartWidget'
-import { Link } from 'react-router-dom'
-import ItemListContainer from '../ItemListContainer/ItemListContainer'
+import React, { useState, useEffect } from 'react';
+import './NavBar.css';
+import CartWidget from '../CartWidget/CartWidget';
+import { Link } from 'react-router-dom';
+import ItemListContainer from '../ItemListContainer/ItemListContainer';
 
 const NavBar = () => {
 	const [categorias, setCategorias] = useState([]);
@@ -22,7 +22,7 @@ const NavBar = () => {
 		<nav className="navbar navbar-expand-lg">
 			<div className="container">
 				<a className="navbar-brand" href="#">
-					<img className="rounded-circle" width="40" height="40" src="images/brand.png" alt="" />
+					<img className="rounded-circle" width="40" height="40" src={process.env.PUBLIC_URL + "/images/brand.png"} alt="" />
 				</a>
 	  			<button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span className="navbar-toggler-icon"></span>
