@@ -8,6 +8,23 @@ import App from './App';
 // import Footer from './components/Footer/Footer';
 // import ItemListContainer from './components/ItemListContainer/ItemListContainer';
 
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyD304aQid_QCdxtecsvS0WCfC5_N939YMM",
+  authDomain: "coderhouse-45701.firebaseapp.com",
+  projectId: "coderhouse-45701",
+  storageBucket: "coderhouse-45701.appspot.com",
+  messagingSenderId: "357457171363",
+  appId: "1:357457171363:web:74dd8baa86b971346f4016",
+  measurementId: "G-KXQHCYB514"
+};
+
+
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<React.StrictMode>

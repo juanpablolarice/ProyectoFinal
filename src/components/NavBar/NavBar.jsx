@@ -3,19 +3,22 @@ import './NavBar.css';
 import CartWidget from '../CartWidget/CartWidget';
 import { Link } from 'react-router-dom';
 import ItemListContainer from '../ItemListContainer/ItemListContainer';
+import { doc, getDoc, getDocs, getFirestore, collection } from 'firebase/firestore'
 
 const NavBar = () => {
-	const [categorias, setCategorias] = useState([]);
+	const [categories, setCategories] = useState([]);
     
 	useEffect(() => {
-		fetch('https://dummyjson.com/products/categories')
-			.then((response) => response.json())
-			.then((data) => {
-				setCategorias(data);
-			})
-		.catch((err) => {
-			console.log(err.message);
-		});
+		const db = getFirestore()
+		const categoriesRef = collection(db, 'categories')
+
+		
+		getDocs(categoriesRef).then((category) => {
+			if(category === 0){
+				console.log("No hay resultados")
+			}
+			setCategories(category.docs.map((categ) => ({ id: categ.id, ...categ.data() })))
+		})
 	}, [])
 	
     return (
@@ -35,7 +38,8 @@ const NavBar = () => {
             					Products
           					</a>
           					<ul className="dropdown-menu">            					
-								{categorias.map(categoria => <li key={categoria}><Link to={"category/" + categoria} className="dropdown-item capitalize-first">{categoria.replaceAll('-', ' ')}</Link></li>)}
+								{/* {categories.map(category => <li key={category}><Link to={"category/" + category} className="dropdown-item capitalize-first">{category.replaceAll('-', ' ')}</Link></li>)} */}
+								{categories.map(category => <li key={category.id}><Link to={"category/" + category.id} className="dropdown-item capitalize-first">{category.name}</Link></li>)}
 							</ul>
         				</li>
 					</ul>

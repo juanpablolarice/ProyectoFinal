@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './Footer.css';
+import { doc, getDoc, getDocs, getFirestore, collection } from 'firebase/firestore'
 
 const Footer = () => {
     const [categories, setCategories] = useState([]);
 
 	useEffect(() => {
-		fetch('https://dummyjson.com/products/categories')
-			.then((response) => response.json())
-			.then((data) => {
-				setCategories(data);
-			})
-		.catch((err) => {
-			console.log(err.message);
-		});
+		const db = getFirestore()
+		const categoriesRef = collection(db, 'categories')
+
+		
+		getDocs(categoriesRef).then((category) => {
+			if(category === 0){
+				console.log("No hay resultados")
+			}
+			setCategories(category.docs.map((categ) => ({ id: categ.id, ...categ.data() })))
+		})
 	}, [])
 
     return (
@@ -23,7 +26,7 @@ const Footer = () => {
                     <div className="col-6 text-center">
                         <h4>Products</h4>
                         {categories.map((category, i, row) => 
-                            <span><Link to={"category/" + category} className="capitalize-first">{category.replaceAll('-', ' ')}</Link>{ i + 1 === row.length ? '' : ' - '}</span>
+                            <span><Link to={"category/" + category.id} className="capitalize-first">{category.name}</Link>{ i + 1 === row.length ? '' : ' - '}</span>
                         )}
                     </div>
                     <div className="col-3 text-center">  
