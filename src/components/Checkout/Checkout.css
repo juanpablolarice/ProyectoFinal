@@ -1,0 +1,11 @@
+.image-product {
+    max-height: 200px;
+}
+.btn-checkout, .btn-continue-shopping {
+    background-color: #9479a4;
+    color: #fff;
+}
+.btn-checkout:hover {
+    background-color: #e2cdee;
+    color: #9479a4;
+}

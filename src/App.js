@@ -1,28 +1,32 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import CartContext from './context/CartContext';
+import CartProvider from './context/CartContext';
+import { CartContext } from './context/CartContext';
 import NavBar from './components/NavBar/NavBar';
 import Footer from './components/Footer/Footer';
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
 import ItemListContainer from './components/ItemListContainer/ItemListContainer';
+import Checkout from './components/Checkout/Checkout';
 
 function App() {
 	// const [cart, setCart] = useContext([]);
+	// <Route exact path="/" element={<ItemListContainer />}/> // greeting="Bienvenido a la tienda de GAIA"
 	
-	return (
-		<React.StrictMode>
-			<BrowserRouter>
-				<CartContext.Provider value={{cart: []}}>
+	return (		
+		<React.StrictMode>			
+			<CartProvider value={CartContext}>
+				<BrowserRouter>
 					<NavBar/>	
-				</CartContext.Provider>
-				<Routes>
-					<Route exact path="/" element={<ItemListContainer greeting="Bienvenido a la tienda de GAIA"/>}/>
-					<Route exact path="/category/:category" element={<ItemListContainer/>}/>
-					<Route exact path="/item/:id" element={<ItemDetailContainer/>}/>
-				</Routes>
-				<Footer/>
-			</BrowserRouter>
+					<Routes>
+						<Route exact path="/" element={<ItemListContainer />}/>
+						<Route exact path="/category/:category" element={<ItemListContainer/>}/>
+						<Route exact path="/item/:id" element={<ItemDetailContainer/>}/>
+						<Route exact path="/checkout" element={<Checkout/>}/>
+					</Routes>
+					<Footer/>
+				</BrowserRouter>
+			</CartProvider>
 		</React.StrictMode>
   	);
 }

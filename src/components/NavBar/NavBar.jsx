@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './NavBar.css';
 import CartWidget from '../CartWidget/CartWidget';
 import { Link } from 'react-router-dom';
 import ItemListContainer from '../ItemListContainer/ItemListContainer';
 import { doc, getDoc, getDocs, getFirestore, collection } from 'firebase/firestore'
 
-const NavBar = () => {
+const NavBar = () => {			
 	const [categories, setCategories] = useState([]);
-    
+	   
 	useEffect(() => {
 		const db = getFirestore()
 		const categoriesRef = collection(db, 'categories')
@@ -37,13 +37,12 @@ const NavBar = () => {
           					<a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             					Products
           					</a>
-          					<ul className="dropdown-menu">            					
-								{/* {categories.map(category => <li key={category}><Link to={"category/" + category} className="dropdown-item capitalize-first">{category.replaceAll('-', ' ')}</Link></li>)} */}
+          					<ul className="dropdown-menu">            													
 								{categories.map(category => <li key={category.id}><Link to={"category/" + category.id} className="dropdown-item capitalize-first">{category.name}</Link></li>)}
 							</ul>
         				</li>
 					</ul>
-					<CartWidget/>
+					<CartWidget />
   				</div>
 			</div>
 		</nav>
