@@ -9,10 +9,7 @@ import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailCont
 import ItemListContainer from './components/ItemListContainer/ItemListContainer';
 import Checkout from './components/Checkout/Checkout';
 
-function App() {
-	// const [cart, setCart] = useContext([]);
-	// <Route exact path="/" element={<ItemListContainer />}/> // greeting="Bienvenido a la tienda de GAIA"
-	
+function App() {	
 	return (		
 		<React.StrictMode>			
 			<CartProvider value={CartContext}>
