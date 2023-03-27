@@ -16,15 +16,5 @@ node.js v18.15.0
 ```git clone https://github.com/juanpablolarice/ProyectoFinal.git```
 2) Instalar dependencias
 ```npm install```
-3) Configurar cuenta de firestore en index.js
-```const firebaseConfig = {
-  apiKey: "",
-  authDomain: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: "",
-  appId: "",
-  measurementId: ""
-};```
 4) Iniciar el servidor 
 ```npm start```
